@@ -161,7 +161,7 @@ echo json_encode($arr);
         $add = "INSERT INTO arreglos(nombre_producto, precio, id_categoria) 
         VALUES('".$_GET["nombre"]."', ".$_GET["precio"].", ".$_GET["categoria"].");";
 
-
+//cambiar
         $result=$db->query($add);
         
         if ($result) {
