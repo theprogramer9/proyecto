@@ -155,6 +155,8 @@ echo json_encode($arr);
 
 
   if (isset($_GET["accion"]) and $_GET["accion"] == "agrega_arreglo") {
+
+    //falta revisar los campos
         
         $add = "INSERT INTO arreglos(nombre_producto, precio, id_categoria) 
         VALUES('".$_GET["nombre"]."', ".$_GET["precio"].", ".$_GET["categoria"].");";
