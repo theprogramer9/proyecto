@@ -100,6 +100,47 @@ $acciones='<span class="glyphicon glyphicon-trash" id="'.$obj->id_categoria.'">
 }
 
 //-----------------------------------------------------------------------------------------------
+if(isset($_GET["consulta"]) and $_GET["consulta"]=="proveedor")
+{
+    $con="SELECT personaContacto,correo,idProvedor,EMPRESA_nombreEmpresa
+          from provedor
+          
+          ";
+
+    $result =$db->query($con);
+    if($result)
+       {
+         while($obj=mysqli_fetch_object($result))
+           {
+
+$acciones='<span class="glyphicon glyphicon-trash" id="'.$obj->idProvedor.'">
+<span class="glyphicon glyphicon-pencil id="'.$obj->idProvedor.'">';
+           $arr[]=array('persona'=> array_utf8_encode_recursive($obj->personaContacto),
+            'correos'=> array_utf8_encode_recursive($obj->correo),
+                        'id'=>$obj->idProvedor,
+                        'nombreEmpresa'=> array_utf8_encode_recursive($obj->EMPRESA_nombreEmpresa),
+                        'acciones'=>array_utf8_encode_recursive($acciones)
+                      );
+
+               
+
+           }  
+
+         
+        }
+        else
+        {
+              $arr[]=array('persona'=>'',
+                        'correos'=>'',
+                        'id'=>'',
+                        'nombreEmpresa'=>'',
+                        'acciones'=>''
+                      );
+
+        }
+     echo json_encode($arr);
+}
+//------------------------------------------------------------------------------------------------
 if(isset($_GET["consulta"]) and $_GET["consulta"]=="productos")
 {
     $con="SELECT clave,nombre_producto,producto.nom_categoria,precio,producto.id_categoria 

@@ -14,10 +14,9 @@
               <li class="active"><a href="inicio.php">Inicio</a></li>
               <li><a href="arreglos.php">Productos</a></li>
               <li><a href="clientes.php">Clientes</a></li>
-               <li><a href="regalos.php">Ofertas</a></li>
                <li><a href="categorias.php">Categorias</a></li>
-               <li><a href="categorias.php">Ventas</a></li>
-               <li><a href="categorias.php">Provvedor</a></li>
+               
+               <li><a href="Proveedor.php">Proveedor</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu">
