@@ -182,8 +182,8 @@ $acciones='<span class= "glyphicon glyphicon-trash" id="'.$obj->clave.'">
 }
 
 if (isset($_GET["accion"])and$_GET["accion"]=="borra_arreglo") {
-$del="DELETE from arreglos
-where id_arreglo=".$_GET["id"];
+$del="DELETE from producto
+where clave=".$_GET["id"];
 $result=$db->query($del);
 if($result)
   $arr[]=array('bn'=>'1');
@@ -199,7 +199,7 @@ echo json_encode($arr);
 
     //falta revisar los campos
         
-        $add = "INSERT INTO arreglos(nombre_producto, precio, id_categoria) 
+        $add = "INSERT INTO producto(nombre_producto, precio, id_categoria) 
         VALUES('".$_GET["nombre"]."', ".$_GET["precio"].", ".$_GET["categoria"].");";
 
 //cambiar
