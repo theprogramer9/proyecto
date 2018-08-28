@@ -28,8 +28,15 @@
             {"data":"acciones"}
              
            ]
-          })
+          });
+
        });
+
+
+
+
+
+
     </script>
   </head>
   <body>

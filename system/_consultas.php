@@ -143,7 +143,7 @@ $acciones='<span class="glyphicon glyphicon-trash" id="'.$obj->idProvedor.'">
 //------------------------------------------------------------------------------------------------
 if(isset($_GET["consulta"]) and $_GET["consulta"]=="productos")
 {
-    $con="SELECT clave,nombre_producto,producto.nom_categoria,precio,producto.id_categoria 
+    $con="SELECT clave,nombre_producto,categorias.nom_categoria,precio,kilogramos,producto.id_categoria 
           from producto
           INNER JOIN categorias on producto.id_categoria=categorias.id_categoria";
 
@@ -159,6 +159,7 @@ $acciones='<span class= "glyphicon glyphicon-trash" id="'.$obj->clave.'">
                         'nombre'=> array_utf8_encode_recursive($obj->nombre_producto),
                         'categoria'=> array_utf8_encode_recursive($obj->nom_categoria),
                         'precio'=> $obj->precio,
+                        'kilo'=> array_utf8_encode_recursive($obj->kilogramos),
                         'acciones'=>array_utf8_encode_recursive($acciones)
                       );
 
@@ -174,6 +175,7 @@ $acciones='<span class= "glyphicon glyphicon-trash" id="'.$obj->clave.'">
                         'nombre'=>'',
                         'categoria'=> '',
                         'precio'=> '',
+                        'kilo'=> '',
                         'acciones'=>''
                       );
 
@@ -199,8 +201,8 @@ echo json_encode($arr);
 
     //falta revisar los campos
         
-        $add = "INSERT INTO producto(nombre_producto, precio, id_categoria) 
-        VALUES('".$_GET["nombre"]."', ".$_GET["precio"].", ".$_GET["categoria"].");";
+        $add = "INSERT INTO producto(nombre_producto, precio,kilogramos, id_categoria) 
+        VALUES('".$_GET["nombre"]."', ".$_GET["precio"].",".$_GET["kilo"].",'".$_GET["categoria"]."');";
 
 //cambiar
         $result=$db->query($add);
