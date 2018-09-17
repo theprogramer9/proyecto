@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Arreglos</title>
+    <title>Productos</title>
  
     <!-- CSS de Bootstrap -->
   <?php include('_metas.php'); ?>
@@ -69,6 +69,34 @@
               }
             });
 
+
+              $(document).on('click', '.glyphicon-pencil', function(){
+
+              var dato = $(this).attr('id');
+              if (confirm('Esta seguro que decea editar este Elemento?')) {
+
+                $.ajax({
+
+                  type:"GET",
+                  url:"_consultas.php",
+                  data:"accion=borra_arreglo&id="+dato,
+                  
+                  success: function(datos){
+
+                    var dataJson = eval(datos);
+                    for(var x in dataJson){
+                      if (dataJson[x].bn==1) {
+                        alert('Elemento Actualizado');
+                      }else{
+                        alert('No fue posible Actualizar el  Elemento');
+                      }
+                    } 
+                  }
+
+                });
+              }
+            });
+
        
 
      $("#btn_agregar").click(function(){
@@ -109,7 +137,7 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                           ARREGLOS   
+                          PRODUCTOS  
                         <span class="glyphicon glyphicon-plus"></span>
                     </div>
                         <!-- /.panel-heading -->

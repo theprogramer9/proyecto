@@ -2,8 +2,8 @@
 include("conexion.php");
 	if (isset($_POST["Email"]) and isset($_POST["Pass"]))
  		{
-	     $consulta = "SELECT Nombre, ApellidoP, Usuario, Contraseña FROM clientes
-        WHERE  Usuario='".$_POST["Email"]."' AND Contraseña='".$_POST["Pass"]."'";
+	     $consulta = "SELECT nombre, apellido, usuario, contra FROM clientes
+        WHERE  usuario='".$_POST["Email"]."' AND contra='".$_POST["Pass"]."'";
          $resultbuscar= $db->query($consulta);
            if($resultbuscar)
               {
@@ -14,9 +14,9 @@ include("conexion.php");
                     
                   $objbuscar=mysqli_fetch_object($resultbuscar);
                   $_SESSION["autentificado"]="si";
-                  $_SESSION["Nombre"]=$objbuscar->Nombre;
+                  $_SESSION["nombre"]=$objbuscar->nombre;
                   //asignando el resultado del query a una variable de _session
-                  $_SESSION["ApellidoP"]=$objbuscar->ApellidoP;
+                  $_SESSION["apellido"]=$objbuscar->apellido;
                   header ("Location:index.php");
         //concatenar variables de post
                     }else

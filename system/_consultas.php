@@ -21,7 +21,7 @@ function array_utf8_encode_recursive($dat){
 //----------------------------------------------------------------------------------------------
 if(isset($_GET["consulta"]) and $_GET["consulta"]=="clientes")
 {
-    $con="SELECT id_cliente,nombre,apellidoP,usuario,contraseña
+    $con="SELECT id_cliente,nombre,apellido,usuario,contra
           from clientes
           
           ";
@@ -36,9 +36,9 @@ $acciones='<span class="glyphicon glyphicon-trash" id="'.$obj->id_cliente.'">
 <span class="glyphicon glyphicon-pencil id="'.$obj->id_cliente.'">';
            $arr[]=array('id'=>$obj->id_cliente,
                         'nombre'=> array_utf8_encode_recursive($obj->nombre),
-                        'apellido'=> array_utf8_encode_recursive($obj->apellidoP),
+                        'apellido'=> array_utf8_encode_recursive($obj->apellido),
                         'usuario'=> array_utf8_encode_recursive($obj->usuario),
-                        'contraseña'=> array_utf8_encode_recursive($obj->contraseña),
+                        'contraseña'=> array_utf8_encode_recursive($obj->contra),
                         'acciones'=>array_utf8_encode_recursive($acciones)
                       );
 
