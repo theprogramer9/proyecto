@@ -153,14 +153,15 @@ if(isset($_GET["consulta"]) and $_GET["consulta"]=="productos")
          while($obj=mysqli_fetch_object($result))
            {
 
-$acciones='<span class= "glyphicon glyphicon-trash" id="'.$obj->clave.'">
-           <span class= "glyphicon glyphicon-pencil" id="'.$obj->clave.'">';
+$acciones='<span class= "glyphicon glyphicon-trash" id="'.$obj->clave.'">'; 
+           $acciones2='<span class= "glyphicon glyphicon-pencil" id="'.$obj->clave.'">';
                         $arr[]=array('id'=>$obj->clave,
                         'nombre'=> array_utf8_encode_recursive($obj->nombre_producto),
                         'categoria'=> array_utf8_encode_recursive($obj->nom_categoria),
                         'precio'=> $obj->precio,
                         'kilo'=> array_utf8_encode_recursive($obj->kilogramos),
-                        'acciones'=>array_utf8_encode_recursive($acciones)
+                        'acciones'=>array_utf8_encode_recursive($acciones),
+                        'acciones2'=>array_utf8_encode_recursive($acciones2)
                       );
 
                
@@ -176,12 +177,69 @@ $acciones='<span class= "glyphicon glyphicon-trash" id="'.$obj->clave.'">
                         'categoria'=> '',
                         'precio'=> '',
                         'kilo'=> '',
-                        'acciones'=>''
+                        'acciones'=>'',
+                        'acciones2'=>''
                       );
 
         }
      echo json_encode($arr);
 }
+//--------------------------------------------------------------------------------------------
+if(isset($_GET["consulta"]) and $_GET["consulta"]=="productos1")
+{
+    $con="SELECT clave,nombre_producto,categorias.nom_categoria,precio,kilogramos,producto.id_categoria 
+          from producto
+          INNER JOIN categorias on producto.id_categoria=categorias.id_categoria WHERE clave=".$_GET["clave"]."";
+
+    $result =$db->query($con);
+    if($result)
+       {
+         while($obj=mysqli_fetch_object($result))
+           {
+
+           
+           $acciones='<span class= "glyphicon glyphicon-trash" id="'.$obj->clave.'">'; 
+
+           $acciones2='<span class= "glyphicon glyphicon-pencil" id="'.$obj->clave.'">';
+                        $arr[]=array(
+                        'clave'=>array_utf8_encode_recursive($obj->clave),
+                        'nombre'=> array_utf8_encode_recursive($obj->nombre_producto),
+                        'categoria'=> array_utf8_encode_recursive($obj->nom_categoria),
+                        'precio'=>array_utf8_encode_recursive($obj->precio),
+                        'kilo'=> array_utf8_encode_recursive($obj->kilogramos),
+                        'acciones'=>array_utf8_encode_recursive($acciones),
+                        'acciones2'=>array_utf8_encode_recursive($acciones2)
+                      );
+
+               
+
+           }  
+
+         
+        }
+        else
+        {
+            $arr[]=array(
+                        'clave'=>'',
+                        'nombre'=>'',
+                        'categoria'=> '',
+                        'precio'=> '',
+                        'kilo'=> '',
+                        'acciones'=>'',
+                        'acciones2'=>''
+
+                      );
+
+        }
+     echo json_encode($arr);
+}
+
+
+
+
+
+
+//-----------------------------
 
 if (isset($_GET["accion"])and$_GET["accion"]=="borra_arreglo") {
 $del="DELETE from producto
@@ -216,4 +274,30 @@ echo json_encode($arr);
         echo json_encode($arr);
       }
 
+
+
+       if (isset($_GET["accion"]) and $_GET["accion"] == "editar_arreglo") {
+
+    //falta revisar los campos
+        
+        $add = "UPDATE producto SET clave='".$_GET["clave"]."',nombre_producto='".$_GET["nombre"]."',precio='".$_GET["precio"]."',kilogramos='".$_GET["kilo"]."',id_categoria='".$_GET["categoria"]."'
+WHERE clave='".$_GET["clave"]."'";
+
+//cambiar
+        $result=$db->query($add);
+        
+        if ($result) {
+          $arr[]=array('bn'=>'1');
+
+        }else{
+          $arr[]=array('bn'=>'0');
+        }
+        echo json_encode($arr);
+      }
+
 ?>
+
+
+
+
+
