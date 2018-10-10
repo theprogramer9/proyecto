@@ -105,30 +105,7 @@
 
        
 
-     $("#btn_agregar").click(function(){
 
-            alert("accion=agrega_arreglo&nombre="+$("#nombre").val()+"&precio="+$("#precio").val() +"&kilo="+$("#kilo").val()+"&categoria="+$("#id_categoria").val());
-
-            $.ajax({
-
-                  type:"GET",
-                  url:"_consultas.php",
-                  data:"accion=agrega_arreglo&nombre="+$("#nombre").val()+"&precio="+$("#precio").val()+"&kilo="+$("#kilo").val()+"&categoria="+$("#id_categoria").val(),
-                  
-                  success: function(datos){
-
-                    var dataJson = eval(datos);
-                    for(var x in dataJson){
-                      if (dataJson[x].bn==1) {
-                        alert('Arreglo Agregado');
-                      }else{
-                        alert('No fue posible agregar el arreglo');
-                      }
-                    }
-                  }
-
-                });
-          });
 
 
             $("#btn_editar").click(function(){
@@ -185,8 +162,8 @@
                                 <th>CATEGORIA</th>
                                 <th>PRECIO</th>
                                 <th>KILOGRAMOS</th>
-                                <th>Accioes Borrar</th>
-                                <th>Accioes Editar</th>
+                                <th>Acciones Borrar</th>
+                                <th>Acciones Editar</th>
                                 
                               </thead>
 
@@ -229,7 +206,7 @@
         <label>Kilogramos</label>
         <input type="text" id="kilo">
         <label>Imagen</label>
-        <input type="file" id="kilo" accept="image/*">
+        <input type="file" id="foto" name="foto" accept="image/*">
 
         <label>Categoria</label>
         <?php 

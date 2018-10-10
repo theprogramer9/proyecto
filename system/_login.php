@@ -2,7 +2,7 @@
 include("conexion.php");
 	if (isset($_POST["Email"]) and isset($_POST["Pass"]))
  		{
-	     $consulta = "SELECT nombre, apellido, usuario, contra FROM clientes
+	     $consulta = "SELECT nombre, apellido, usuario, contra FROM user
         WHERE  usuario='".$_POST["Email"]."' AND contra='".$_POST["Pass"]."'";
          $resultbuscar= $db->query($consulta);
            if($resultbuscar)

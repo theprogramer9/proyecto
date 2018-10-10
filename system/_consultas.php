@@ -17,6 +17,58 @@ function array_utf8_encode_recursive($dat){
   foreach ($dat as $i => $d) $ret[i]=array_utf8_encode_recursive($d);
   return $ret;
 }
+//----------------------------------------------------------------------------------------------
+if(isset($_GET["consulta"]) and $_GET["consulta"]=="clientes1")
+{
+    $con="SELECT id_cliente,nombre,apellido,usuario,contra
+          from clientes
+          
+          ";
+
+    $result =$db->query($con);
+    if($result)
+       {
+         while($obj=mysqli_fetch_object($result))
+           {
+
+$acciones='<span class="glyphicon glyphicon-trash" id="'.$obj->id_cliente.'">
+<span class="glyphicon glyphicon-pencil id="'.$obj->id_cliente.'">';
+           $arr[]=array('id'=>$obj->id_cliente,
+                        'nombre'=> array_utf8_encode_recursive($obj->nombre),
+                        'apellido'=> array_utf8_encode_recursive($obj->apellido),
+                        'usuario'=> array_utf8_encode_recursive($obj->usuario),
+                        'contraseña'=> array_utf8_encode_recursive($obj->contra),
+                        'acciones'=>array_utf8_encode_recursive($acciones)
+                      );
+
+               
+
+           }  
+
+         
+        }
+        else
+        {
+              $arr[]=array('id'=>'',
+                        'nombre'=>'',
+                        'apellido'=> '',
+                        'usuario'=> '',
+                        'contraseña'=> '',
+                        'acciones'=>''
+                      );
+
+        }
+     echo json_encode($arr);
+}
+
+
+
+
+
+
+
+
+
 
 //----------------------------------------------------------------------------------------------
 if(isset($_GET["consulta"]) and $_GET["consulta"]=="clientes")
@@ -251,18 +303,27 @@ else
   $arr[]=array('bn'=>'0');
 echo json_encode($arr);
 }
+//---------------borra cliente---------------------------------------
+
+if (isset($_GET["accion"])and$_GET["accion"]=="borra_cliente") {
+$del="DELETE from clientes
+where id_cliente=".$_GET["id"];
+$result=$db->query($del);
+if($result)
+  $arr[]=array('bn'=>'1');
+else
+  $arr[]=array('bn'=>'0');
+echo json_encode($arr);
+}
 
 
 
+//-----------------------------------------------------------------------------------------------------
 
   if (isset($_GET["accion"]) and $_GET["accion"] == "agrega_arreglo") {
-
-    //falta revisar los campos
-        
-        $add = "INSERT INTO producto(nombre_producto, precio,kilogramos, id_categoria) 
-        VALUES('".$_GET["nombre"]."', ".$_GET["precio"].",".$_GET["kilo"].",'".$_GET["categoria"]."');";
-
-//cambiar
+      
+       $add = "INSERT INTO producto(nombre_producto, precio,kilogramos, id_categoria) 
+     VALUES('".$_GET["nombre"]."', ".$_GET["precio"].",".$_GET["kilo"].",'".$_GET["categoria"]."');";
         $result=$db->query($add);
         
         if ($result) {
@@ -274,7 +335,7 @@ echo json_encode($arr);
         echo json_encode($arr);
       }
 
-
+//-------------------------EDITAR Producto-------------------
 
        if (isset($_GET["accion"]) and $_GET["accion"] == "editar_arreglo") {
 
