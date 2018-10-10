@@ -27,7 +27,13 @@
 
              
            ]
-          })
+          });
+
+               $(document).on('click', '.glyphicon-plus', function(){
+
+             // $("#agregar").modal('show');
+             location.href="FormProducto.php";      
+                  });
        });
     </script>
   </head>
@@ -43,6 +49,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                            Proveedor  
+                                 <span class="glyphicon glyphicon-plus"></span>
                     </div>
                         <!-- /.panel-heading -->
                      <div class="panel-body">
