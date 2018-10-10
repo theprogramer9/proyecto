@@ -1,8 +1,8 @@
 <?php
-   $host="localhost";
+   $host="127.0.0.1";
    $database="masterpoint";
    $user="root";
-   $psw="betza123";
+   $psw="pavilion";
    $db=new mysqli($host,$user,$psw,$database);
 
    			if($db-> connect_error>0)
