@@ -28,7 +28,7 @@
   <div class="buttons">
 <input type="submit" value="Ingresar">
     <span>
-      <a href="register" class="entypo-user-add register">Registrar</a>
+      <a href="register.php" class="entypo-user-add register">Registrar</a>
     </span>
   </div>
   
