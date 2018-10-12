@@ -30,7 +30,7 @@
             $(document).on('click', '.glyphicon-plus', function(){
 
              // $("#agregar").modal('show');
-             location.href="FormCliente.php";      
+             location.href="FormCategoria.php";      
                   });
        });
     </script>

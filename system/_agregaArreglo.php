@@ -10,7 +10,7 @@ $add="INSERT INTO producto(nombre_producto, precio,kilogramos,foto, id_categoria
 '".$_POST["precio"]."',
 '".$_POST["kilogramos"]."',
 '$destino',
-'".$_POST["id_categoria"]."');";
+'2');";
 $result=$db->query($add);
 if ($result) {
  header("Location: productos2.php?Agregado=1");

@@ -81,7 +81,7 @@
 								No tienes cuenta?
 							</span>
 
-							<a href="register.php" class="txt2">
+							<a href="register1.php" class="txt2">
 								Registro
 							</a>
 						</li>

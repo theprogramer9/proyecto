@@ -15,8 +15,7 @@
               <li><a href="productos2.php">Productos</a></li>
               <li><a href="clientes.php">Clientes</a></li>
                <li><a href="categorias.php">Categorias</a></li>
-                <li><a href="categorias.php">Compras</a></li>
-                 <li><a href="categorias.php">Ventas</a></li>
+                
                
                <li><a href="Proveedor.php">Proveedor</a></li>
             
